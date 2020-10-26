@@ -15,7 +15,7 @@ function init(fcn, opt)
   end
   # get tail of sum_{p=P]^infty 1/p^2
   no_terms=100
-  H2_tail=Array(Float16,no_terms)
+  H2_tail=Array{Float16}(undef,no_terms)
   H2_tail[1]=pi^2/6 # zeta(2)
   for i=2:no_terms
     H2_tail[i]=H2_tail[i-1]-1/(i^2)
@@ -25,8 +25,8 @@ function init(fcn, opt)
   T=Int16
   m=fcn.m
   m2=round(T,m*(m-1)/2)
-  ri=Array(T,m2)
-  ci=Array(T,m2)
+  ri=Array{T}(undef,m2)
+  ci=Array{T}(undef,m2)
   k=1
   for i = 1:(m-1)
       for j = (i+1):m
@@ -37,10 +37,10 @@ function init(fcn, opt)
   end
   S=merge(S,Dict("ri"=>ri, "ci"=>ci, "m2"=>m2))
   # initialise storage
-  S["tmp_m2"]=Array(Float64,(m,m))
-  S["tail"]=Array(Float64,(m,m))
-  S["J"]=Array(Float64,m)
-  S["K"]=Array(Float64,(m,m))
+  S["tmp_m2"]=Array{Float64}(undef,(m,m))
+  S["tail"]=Array{Float64}(undef,(m,m))
+  S["J"]=Array{Float64}(undef,m)
+  S["K"]=Array{Float64}(undef,(m,m))
   #
   return S
 end
@@ -87,7 +87,7 @@ function Gamma_2!(out,A,dW,S)
   =#
   for i=1:length(dW)
     for j=1:length(dW)
-      out[i,j]=vecdot(A[i,:],dW)*dW[j]
+      out[i,j]=(A[i,:]'*dW)*dW[j]
     end
   end
 end

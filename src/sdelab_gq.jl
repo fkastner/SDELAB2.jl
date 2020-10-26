@@ -8,7 +8,7 @@ import NLsolve
 import ForwardDiff
 import Roots
 #
-using gauss_quadrature
+using ..gauss_quadrature
 #import gauss_quadrature
 #
 ##########################

@@ -221,8 +221,8 @@ function sde_strong_solution(fcn, tspan, y0, opt)
   ts=minimum(tspan); tf=maximum(tspan)
   N=round((tf-ts)/opt["MaxStepSize"]); dt=(tf-ts)/N
   solver=opt["Solver"]
-  t_out=Array(Float64,length(tspan))
-  y_out=Array(Float64,(length(tspan),fcn.d))
+  t_out=Array{Float64}(undef,length(tspan))
+  y_out=Array{Float64}(undef,length(tspan),fcn.d)
   y=deepcopy(y0); y_out[1,:]=y # initial data
   t=ts; t_out[1]=ts # initial time
   #
@@ -394,7 +394,7 @@ function set_fcn(d,m,drift,diff_mat,diff_vecs,noise_type=1)
   =#
   Jdrift=ForwardDiff.jacobian(drift)
   if diff_vecs!=Union{}
-    Jdiff_vecs=Array(Function,m)
+    Jdiff_vecs=Array{Function}(undef,m)
     for i=1:m
       Jdiff_vecs[i]=ForwardDiff.jacobian(diff_vecs[i])
     end
