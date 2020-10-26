@@ -4,7 +4,9 @@ __precompile__()
 module SDELab2
 import NLsolve
 import ForwardDiff
-import iteratedintegral
+
+include("iteratedintegral.jl")
+import .iteratedintegral
 
 export set_opt, sde_strong_solution, set_fcn,  method_code, do_plotting
 
@@ -28,8 +30,11 @@ method_code["MFEM2"]="Mean-field SDE Gauss-quadrature second-order explicit"
 method_code["MFEM"] ="Mean-field SDE Gauss-quadrature alpha-drift implicit (first order)"
 method_code["MFEM0e"]="Mean-field SDE Gauss-quadrature Euler-Maruyama (exterior mean-field evaluation)"
 method_code["MFEMe"] ="Mean-field SDE Gauss-quadrature alpha-drift implicit (first order, exterior mean-field)"
-using sdelab_gq
-using gauss_quadrature
+
+include("gauss_quadrature.jl")
+using .gauss_quadrature
+include("sdelab_gq.jl")
+using .sdelab_gq
 #####
 function __init__()
 end
