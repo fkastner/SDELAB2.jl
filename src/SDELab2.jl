@@ -41,7 +41,7 @@ end
 # explicit Euler methods (i.e., Euler-Maruyama and Heun)
 # data structure to store required bits
 # and one-step routines
-type EM
+struct EM
   m
   drift
   diff_mat
@@ -64,13 +64,13 @@ end
 ##################################################
 # implicit Euler methods
 # parameters for nonlinear solver
-type NLSOLVE_param
+struct NLSOLVE_param
   maxfeval
   ftol
   xtol
 end
 # required bits for implicit-type Euler methods
-type EMImp
+struct EMImp
   m
   drift
   diff_mat
@@ -98,7 +98,7 @@ function one_step_heun_alpha(u,x::EMImp)
 end
 # BDF method
 # required bits
-type BDF
+struct BDF
   m
   drift
   diff_mat
@@ -121,7 +121,7 @@ function one_step_bdf(u,x::BDF)
 end
 ##########################################################
 # Explicit Milstein methods
-type Mil
+struct Mil
   d
   m
   drift
@@ -154,7 +154,7 @@ function one_step_ito_mil(u,x::Mil)
 end
 ###################################################
 # Implicit Milstein methods
-type MilImp
+struct MilImp
   d
   m
   drift
@@ -377,7 +377,7 @@ function do_plotting(t,y,opt)
   end
 end
 #
-type Fcn
+struct Fcn
   d # state-space dimension
   m # no. Brownian motions
   drift # u -> f(u)

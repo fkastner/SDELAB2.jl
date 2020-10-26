@@ -11,7 +11,7 @@ end
 #
 function diff_g_vecs(alpha)
   m=2
-  A=Array(Function,m)
+  A=Array{Function}(undef,m)
   g1(u)=[u[1]*alpha,0]
   g2(u)=[0,u[2]*alpha]
   A[1]=g1

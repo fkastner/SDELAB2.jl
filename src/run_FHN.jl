@@ -10,7 +10,7 @@ println("run_FHN.jl")
 # 2009. Chap. 12, pp. 344–366.
 # doi: 10.1093/acprof:oso/9780199235070.003.0012 .
 #
-type fhn_params
+struct fhn_params
   D
   Mu
   a

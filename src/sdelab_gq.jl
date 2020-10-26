@@ -19,7 +19,7 @@ end
 ############################
 #
 
-type Fcnmf
+struct Fcnmf
   #
   drift # u -> f(u) for u (n+1)-dimensions, f(u) scalar
   drift_ext # (z,q)-> q ( f(z,r(.))) integrate out 2nd arg

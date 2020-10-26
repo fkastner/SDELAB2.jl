@@ -101,7 +101,7 @@ function Gamma_3!(out,A,S)
   =#
   r=S["ri"]
   c=S["ci"]
-  for i in length(r)
+  for i in 1:length(r)
     out[i]=A[r[i],c[i]] - A[c[i],r[i]]
   end
 end

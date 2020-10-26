@@ -1,6 +1,6 @@
 using SDELab2 # SDELab2.jl should be findable via LOAD_PATH
 println("run_vdp2.jl")
-type vdp_param
+struct vdp_param
   alpha
   beta
   A

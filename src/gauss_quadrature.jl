@@ -8,7 +8,7 @@ function init(fcn, opt)
   =#
 end
 #######################
-type QUAD
+struct QUAD
   length
   X
   w

@@ -35,7 +35,7 @@ end
 #
 function diff_g_vecs(sig)
   m=1
-  A=Array(Function,m)
+  A=Array{Function}(undef,m)
   g1(u)=[sig,0,0,0]
   A[1]=g1
   return A
