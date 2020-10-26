@@ -124,6 +124,9 @@ function compute_tail!(tail,dt,dW,ap,S)
   Gamma_2!(tail,tmp_m2,dW,S)
   Gamma_3!(tmp_M,tail,S)
   Gamma_1!(tail,tmp_M+noiseVec,S)
+  for i = 1:S["m"]
+    tail[i,i] = 0
+  end
 end
 #
 function get_strat!(dt,S)
@@ -194,13 +197,13 @@ function BBT!(dt,S)
     zeta=randn(m)*sd
     K[:,1]-= zeta*(2/sqrt(pi*r))
     for i=2:m
-      for j=1:i
+      for j=1:i-1
         K[i,j]+=zeta[i]*eta[j]-eta[i]*zeta[j]
       end
     end
   end
   for i=2:m
-    for j=1:i
+    for j=1:i-1
       tmp1=K[i,j]-0.5*(K[j,1]*J[i]-K[i,1]*J[j])
       tmp2=0.5*J[i]*J[j]
       K[i,j]=tmp2+tmp1
